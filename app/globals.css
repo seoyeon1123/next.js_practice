@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply bg-blue-500 text-white text-center w-full max-w-sm py-2 rounded-lg shadow-md hover:bg-blue-400;
+  }
+}
+
+@layer base {
+  a {
+    @apply font-medium text-blue-400 hover:underline;
+  }
+}
