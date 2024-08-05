@@ -7,10 +7,13 @@ import FormInput from '@/components/form-input';
 import { useState } from 'react';
 import { handleForm } from './action';
 import LoginBtn from '@/components/login-btn';
+import { useFormState } from 'react-dom';
+import { error } from 'console';
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
+  const [state, action] = useFormState(handleForm, null);
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
@@ -37,20 +40,29 @@ export default function Login() {
           <span className="h-px w-full bg-slate-200"></span>
         </div>
 
-        <form action={handleForm} className="flex flex-col gap-2 w-full">
+        <form action={action} className="flex flex-col gap-2 w-full">
           <FormInput
             name="email"
             required
             type="email"
             placeholder="사용자 이메일"
-            errors={[]}
+            errors={state?.errors?.fieldErrors.email || []}
           />
           <FormInput
             name="password"
             required
             type="password"
             placeholder="비밀번호"
-            errors={[]}
+            errors={state?.errors?.fieldErrors.password || []}
+            showPassword={showPassword}
+            onTogglePassword={togglePasswordVisibility}
+          />
+          <FormInput
+            name="comfirmPassword"
+            required
+            type="password"
+            placeholder="비밀번호 재입력하세요"
+            errors={state?.errors?.fieldErrors.comfirmPassword || []}
             showPassword={showPassword}
             onTogglePassword={togglePasswordVisibility}
           />

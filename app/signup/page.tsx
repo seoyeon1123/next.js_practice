@@ -3,9 +3,11 @@
 import { useState } from 'react';
 import PhoneSignUp from './components/phone';
 import EmailSignUp from './components/email';
+import { useFormState } from 'react-dom';
 
 export default function SignUp() {
   const [view, setView] = useState('');
+  const [state, action] = useFormState(SignUp, null);
 
   return (
     <div className="flex flex-col justify-center items-center">
