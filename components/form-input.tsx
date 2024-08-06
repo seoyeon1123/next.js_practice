@@ -1,3 +1,5 @@
+import { InputHTMLAttributes } from 'react';
+
 interface IFormProps {
   type: string;
   placeholder: string;
@@ -16,7 +18,7 @@ export default function FormInput({
   errors,
   showPassword = false,
   onTogglePassword,
-}: IFormProps) {
+}: IFormProps & InputHTMLAttributes<HTMLInputElement>) {
   return (
     <div className="relative w-full">
       <input

@@ -72,6 +72,9 @@ export default function Login() {
           </Link>
           <LoginBtn />
         </form>
+        <Link href="/sms" className="btn text-sm">
+          SMS로 로그인하기
+        </Link>
       </div>
       <div className="flex gap-1 mt-8 *:font-normal text-sm">
         <span className="text-slate-500">계정이 없으신가요?</span>
