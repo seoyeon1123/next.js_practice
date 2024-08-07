@@ -3,7 +3,6 @@
 import FormInput from '@/components/form-input';
 import { useFormState } from 'react-dom';
 import { smsLogin } from './action';
-import LoginBtn from '@/components/login-btn';
 
 const initialState = {
   token: false,
