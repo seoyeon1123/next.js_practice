@@ -57,16 +57,6 @@ export default function Login() {
             showPassword={showPassword}
             onTogglePassword={togglePasswordVisibility}
           />
-          <FormInput
-            name="comfirmPassword"
-            required
-            type="password"
-            placeholder="비밀번호 재입력하세요"
-            errors={state?.errors?.fieldErrors.comfirmPassword || []}
-            showPassword={showPassword}
-            onTogglePassword={togglePasswordVisibility}
-          />
-
           <Link href="/password" className="text-sm py-1 text-right w-full">
             비밀번호를 잊으셨나요?
           </Link>

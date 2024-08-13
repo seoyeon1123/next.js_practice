@@ -1,5 +1,9 @@
 'use server';
+import db from '@/lib/db';
 import { z } from 'zod';
+import bcrypt from 'bcrypt';
+import getSession from '@/lib/session';
+import { redirect } from 'next/navigation';
 
 const formSchema = z
   .object({
@@ -33,9 +37,27 @@ export async function handleForm(prevState: any, formData: FormData) {
       errors: result.error.flatten(),
     };
   } else {
-    return {
-      success: true,
-      data: result.data,
-    };
+    const user = db.user.findUnique({
+      where: {
+        email: result.data.email,
+      },
+      select: {
+        id: true,
+        password: true,
+      },
+    });
+    const ok = await bcrypt.compare(result.data.password, user!.password ?? '');
+    if (ok) {
+      const session = await getSession();
+      session.id === user.id;
+      redirect('/');
+    } else {
+      return {
+        fieldError: {
+          password: '비밀번호가 틀립니다.',
+          email: [],
+        },
+      };
+    }
   }
 }
