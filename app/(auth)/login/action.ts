@@ -29,7 +29,7 @@ export async function handleForm(prevState: any, formData: FormData) {
     comfirmPassword: formData.get('comfirmPassword'),
   };
 
-  const result = formSchema.safeParse(data);
+  const result = await formSchema.spa(data);
 
   if (!result.success) {
     return {
@@ -50,7 +50,7 @@ export async function handleForm(prevState: any, formData: FormData) {
     if (ok) {
       const session = await getSession();
       session.id === user.id;
-      redirect('/');
+      redirect('/profile');
     } else {
       return {
         fieldError: {

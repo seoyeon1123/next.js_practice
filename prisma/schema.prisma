@@ -18,6 +18,7 @@ model User {
   updated_at DateTime @updatedAt
 
   SMSToken SMSToken[]
+  Product Product[]
 }
 
 model SMSToken  {
@@ -28,4 +29,17 @@ model SMSToken  {
 
   user User @relation( fields: [userId], references: [id])
   userId Int
+}
+
+model Product {
+  id Int @id @default(autoincrement())
+  title String
+  price Float
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  description String
+  photo String 
+  user User @relation(fields: [userId], references: [id])
+  userId Int
+
 }
