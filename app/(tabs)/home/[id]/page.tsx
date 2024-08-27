@@ -27,10 +27,6 @@ async function getProduct(id: number) {
   return product;
 }
 
-async function getLoading() {
-  await new Promise((resolve) => setTimeout(resolve, 4000));
-}
-
 // `params`에서 `id`를 받아와서 비동기로 데이터를 처리합니다.
 export default async function HomeDetail({
   params,
@@ -50,12 +46,15 @@ export default async function HomeDetail({
     return notFound();
   }
 
-  const loading = await getLoading();
-
   // 데이터를 렌더링합니다.
   return (
     <div className="mb-16 p-3">
-      <Image src={product.photo} alt={product.title} width={500} height={300} />
+      <Image
+        src={`${product.photo}/public`}
+        alt={product.title}
+        width={500}
+        height={300}
+      />
       <div className="flex flex-row justify-between py-2">
         <div className="flex flex-row gap-3">
           <HeartIcon className="size-7" />

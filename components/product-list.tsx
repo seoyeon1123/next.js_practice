@@ -17,7 +17,7 @@ export default function ProductList({ product }: IProductProps) {
       <Link href={`home/${product.id}`} className="flex flex-col items-center">
         <div className="relative w-full h-40">
           <Image
-            src={product.photo}
+            src={`${product.photo}/avatar`}
             alt={product.title}
             fill
             className="object-cover"
